@@ -6,8 +6,7 @@ export default class Preloader extends Phaser.Scene {
     }
 
     preload(): void {
-        this.load.image('acho', 'assets/acho.png');
-        this.load.image('ground', 'assets/ground.png');
+        this.load.image('spaceship', 'assets/spaceship.png');
     }
 
     create(): void {

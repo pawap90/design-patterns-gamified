@@ -10,11 +10,11 @@ const config: Phaser.Types.Core.GameConfig = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 500 }
+            gravity: { y: 0 }
         }
     },
     scene: [PreloaderScene, InitialScene],
-    backgroundColor: '#21213B'
+    backgroundColor: '#21414E'
 };
 
 export default new Phaser.Game(config);

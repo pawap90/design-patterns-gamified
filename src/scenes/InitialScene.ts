@@ -1,19 +1,24 @@
 import Phaser from 'phaser';
+import ShipCharacter from '../characters/ShipCharacter';
+import ControllerKeys from '../utils/ControllerKeys';
 
 export default class InitialScene extends Phaser.Scene {
-    private achoThePup!: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+    private shipCharacter!: ShipCharacter;
+    private controllerKeys!: ControllerKeys;
 
     constructor() {
         super('initial');
     }
 
     create(): void {
+        this.controllerKeys = new ControllerKeys(this, 'wasd');
+        this.shipCharacter = new ShipCharacter(this, 0, 0);
+        this.shipCharacter.setCollideWorldBounds(true);
+    }
 
-        this.add.image(400, 570, 'ground');
-        this.achoThePup = this.physics.add.image(0, 0, 'acho');
-        
-        this.achoThePup.setCollideWorldBounds(true);
-        this.achoThePup.setBounce(1, 1);
-        this.achoThePup.setVelocityX(300);
+    update(time: number, delta: number): void {
+        super.update(time, delta);
+
+        this.shipCharacter.update(time, delta, this.controllerKeys);
     }
 }
