@@ -1,0 +1,30 @@
+name: CI/CD
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'npm'
+  
+      - name: Build project 🔧
+        run: | 
+          npm install
+          npm run build
+        
+      # Deploy latest contribution to GitHub pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: _build
