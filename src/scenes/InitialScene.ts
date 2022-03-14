@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import ShipCharacter from '../characters/ShipCharacter';
+import ShipCharacter from '../game-objects/ShipCharacter';
 import ControllerKeys from '../utils/ControllerKeys';
 
 export default class InitialScene extends Phaser.Scene {

@@ -7,7 +7,7 @@ export default class ControllerKeys {
     left!: Phaser.Input.Keyboard.Key;
     right!: Phaser.Input.Keyboard.Key;
     
-    jump!: Phaser.Input.Keyboard.Key;
+    shoot!: Phaser.Input.Keyboard.Key;
 
     constructor(scene: Scene, mode?: 'default' | 'wasd') {
         if (mode === 'wasd')
@@ -15,7 +15,7 @@ export default class ControllerKeys {
         else
             this.createDefaultKeys(scene);
 
-        this.jump = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.shoot = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     get isAnyKeyDown(): boolean {
