@@ -52,7 +52,17 @@ export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
             this.shootGun(time, delta);
     }
 
+    /**
+     * Shoots using the currently selected gun strategy.
+     */
     shootGun(time: number, delta: number): void {
         this.gunStrategy.shoot(this.bullets, this, this.scene, time, delta);
+    }
+
+    /**
+     * Sets a new gun strategy to use.
+     */
+    setGunStrategy(newStrategy: GunStrategy) {
+        this.gunStrategy = newStrategy;
     }
 }
