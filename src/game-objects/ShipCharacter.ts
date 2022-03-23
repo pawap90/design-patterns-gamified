@@ -1,6 +1,5 @@
-import DoubleGun from '../gun-strategy/DoubleGun';
+import BigGun from '../gun-strategy/BigGun';
 import GunStrategy from '../gun-strategy/GunStrategy';
-import SimpleGun from '../gun-strategy/SimpleGun';
 import ControllerKeys from '../utils/ControllerKeys';
 import Bullet from './Bullet';
 
@@ -25,13 +24,13 @@ export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
         this.setDepth(1);
 
         this.bullets = scene.physics.add.group({ classType: Bullet, runChildUpdate: true });
-        this.gunStrategy = new DoubleGun();
+        this.gunStrategy = new BigGun();
     }
 
     update(time: number, delta: number, controllerKeys: ControllerKeys): void {
         super.update(time, delta);
 
-        // Character movement
+        // Character movement.
         const speed = { x: 0, y: 0 };
 
         if (controllerKeys.left.isDown)
@@ -48,11 +47,12 @@ export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
 
         this.setVelocity(speed.x, speed.y);
 
+        // Shooting controller.
         if (controllerKeys.shoot.isDown)
-            this.ShootGun(time, delta);
+            this.shootGun(time, delta);
     }
 
-    ShootGun(time: number, delta: number): void {
-        this.gunStrategy.Shoot(this.bullets, this, this.scene, time, delta);
+    shootGun(time: number, delta: number): void {
+        this.gunStrategy.shoot(this.bullets, this, this.scene, time, delta);
     }
 }

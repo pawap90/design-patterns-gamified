@@ -1,23 +1,23 @@
-import Bullet from "../game-objects/Bullet";
-import ShipCharacter from "../game-objects/ShipCharacter";
-import GunStrategy from "./GunStrategy";
+import Bullet from '../game-objects/Bullet';
+import ShipCharacter from '../game-objects/ShipCharacter';
+import GunStrategy from './GunStrategy';
 
-export default class SimpleGun implements GunStrategy {
+export default class BigGun implements GunStrategy {
 
     private bulletSpeed = 30;
     private delay = 1000; 
     private lastBulletTime = 0;
 
-    Shoot(bulletGroup: Phaser.Physics.Arcade.Group, ship: ShipCharacter, scene: Phaser.Scene, time: number, delta: number): void {
+    shoot(bulletGroup: Phaser.Physics.Arcade.Group, ship: ShipCharacter, scene: Phaser.Scene, time: number, delta: number): void {
 
         if (this.lastBulletTime + this.delay > time ) return;
 
         const bullet = bulletGroup.get(ship.x, ship.y, 'bullet-02') as Bullet;
         
-		bullet.copyPosition(ship);
+        bullet.copyPosition(ship);
         bullet.y += ship.height / 2;
 
-		bullet.setVelocity(this.bulletSpeed * delta, 0)
+        bullet.setVelocity(this.bulletSpeed * delta, 0);
 
         this.lastBulletTime = time;
     }
