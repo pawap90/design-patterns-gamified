@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
+import GameOverScene from './GameOverScene';
+import GameScene from './GameScene';
 
 export default class Preloader extends Phaser.Scene {
     constructor() {
-        super('preloader');
+        super(Preloader.name);
     }
 
     preload(): void {
@@ -13,6 +15,7 @@ export default class Preloader extends Phaser.Scene {
     }
 
     create(): void {
-        this.scene.start('initial');
+        console.log(GameOverScene.name);
+        this.scene.start(GameScene.name);
     }
 }

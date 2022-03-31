@@ -2,14 +2,16 @@ import Phaser from 'phaser';
 import Asteroid from '../game-objects/Asteroid';
 import ShipCharacter from '../game-objects/ShipCharacter';
 import ControllerKeys from '../utils/ControllerKeys';
+import GameOverScene from './GameOverScene';
 
-export default class InitialScene extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
     private shipCharacter!: ShipCharacter;
     private controllerKeys!: ControllerKeys;
     private asteroids!: Phaser.Physics.Arcade.Group;
+    private asteroidSpawnTimer!: Phaser.Time.TimerEvent;
 
     constructor() {
-        super('initial');
+        super(GameScene.name);
     }
 
     create(): void {
@@ -22,10 +24,12 @@ export default class InitialScene extends Phaser.Scene {
             runChildUpdate: true
         });
 
+        this.physics.add.collider(this.shipCharacter, this.asteroids, this.onAsteroidCollide, undefined, this);
+
         let asteroidSpeedFactor = 0;
         let asteroidSpawnDelayFactor = 0;
         let asteroidSpawnAmountFactor = 0;
-        const timer = this.time.addEvent({
+        this.asteroidSpawnTimer = this.time.addEvent({
             callback: () => {
                 // Calculate asteroid speed factor.
                 asteroidSpeedFactor = Phaser.Math.MaxAdd(asteroidSpeedFactor, 1, 25);
@@ -42,13 +46,12 @@ export default class InitialScene extends Phaser.Scene {
                 }
                 
                 // Decrease spawn delay.
-                timer.timeScale = 1 + asteroidSpawnDelayFactor * 0.01;
+                this.asteroidSpawnTimer.timeScale = 1 + asteroidSpawnDelayFactor * 0.01;
             },
             delay: 1000,
             loop: true
         });
     }
-
 
     update(time: number, delta: number): void {
         super.update(time, delta);
@@ -56,15 +59,19 @@ export default class InitialScene extends Phaser.Scene {
         this.shipCharacter.update(time, delta, this.controllerKeys);
     }
 
+    private onAsteroidCollide() {
+        this.scene.pause();
+        this.scene.start(GameOverScene.name);
+    }
+
     private getRandomAsteroidSpawnPoint() {
-        return { x: this.cameras.main.width, y: Phaser.Math.Between(20, this.cameras.main.height - 20) }
+        return { x: this.cameras.main.width, y: Phaser.Math.Between(20, this.cameras.main.height - 20) };
     }
 
     private spawnNewAsteroid(asteroidSpeedFactor: number) {
         const spawnPoint = this.getRandomAsteroidSpawnPoint();
 
-        let newAsteroid: Asteroid;
-        newAsteroid = this.asteroids.get(spawnPoint.x, spawnPoint.y);
+        const newAsteroid: Asteroid = this.asteroids.get(spawnPoint.x, spawnPoint.y);
         newAsteroid.create(18 + asteroidSpeedFactor);       
     }
 
