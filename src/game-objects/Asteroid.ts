@@ -6,7 +6,7 @@ export default class Asteroid extends Phaser.Physics.Arcade.Image {
         super(scene, x, y, 'asteroid');
     }
     
-    create(baseSpeed = 20) {
+    create(baseSpeed = 20): void {
         this.body.onCollide = true;
         
         this.speed = baseSpeed + Phaser.Math.Between(this.speedRandomFactor * -1, this.speedRandomFactor);

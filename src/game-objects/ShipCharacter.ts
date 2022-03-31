@@ -62,7 +62,7 @@ export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
     /**
      * Sets a new gun strategy to use.
      */
-    setGunStrategy(newStrategy: GunStrategy) {
+    setGunStrategy(newStrategy: GunStrategy): void {
         this.gunStrategy = newStrategy;
     }
 }
