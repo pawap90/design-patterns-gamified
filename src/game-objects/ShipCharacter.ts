@@ -6,25 +6,20 @@ import Bullet from './Bullet';
 export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
 
     private speed = 50;
-    private bullets: Phaser.Physics.Arcade.Group;
+    private bullets!: Phaser.Physics.Arcade.Group;
     private gunStrategy: GunStrategy;
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'spaceship');
 
-        scene.add.existing(this);
-        scene.physics.add.existing(this);
+        this.gunStrategy = new BigGun();
+    }
 
+    create(): void {
         this.setOrigin(0, 0);
         this.setCollideWorldBounds(true);
-        this.setPosition(0, (scene.cameras.main.height - this.height) / 2);
-        this.setBounce(0, 0.5);
-        this.setMaxVelocity(500, undefined);
-        this.setVelocityX(this.speed);
         this.setDepth(1);
-
-        this.bullets = scene.physics.add.group({ classType: Bullet, runChildUpdate: true });
-        this.gunStrategy = new BigGun();
+        this.bullets = this.scene.physics.add.group({ classType: Bullet, runChildUpdate: true });
     }
 
     update(time: number, delta: number, controllerKeys: ControllerKeys): void {

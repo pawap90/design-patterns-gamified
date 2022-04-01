@@ -16,8 +16,13 @@ export default class GameScene extends Phaser.Scene {
 
     create(): void {
         this.controllerKeys = new ControllerKeys(this, 'wasd');
+
+        // Add character to the scene.
         this.shipCharacter = new ShipCharacter(this, 0, 0);
-        this.shipCharacter.setCollideWorldBounds(true);
+        this.add.existing(this.shipCharacter);
+        this.physics.add.existing(this.shipCharacter);
+        this.shipCharacter.create();
+        this.shipCharacter.setPosition(50, (this.cameras.main.height - this.shipCharacter.height) / 2);
 
         this.asteroids = this.physics.add.group({
             classType: Asteroid,
