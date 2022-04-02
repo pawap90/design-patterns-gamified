@@ -49,28 +49,18 @@ export default class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.shipCharacter, this.asteroids, this.onAsteroidCollide, undefined, this);
 
         let asteroidSpeedFactor = 0;
-        let asteroidSpawnDelayFactor = 0;
-        let asteroidSpawnAmountFactor = 0;
         this.asteroidSpawnTimer = this.time.addEvent({
             callback: () => {
-                // Calculate asteroid speed factor.
-                asteroidSpeedFactor = Phaser.Math.MaxAdd(asteroidSpeedFactor, 1, 25);
-                // Calculate asteroid amount factor.
-                asteroidSpawnAmountFactor = Phaser.Math.MaxAdd(asteroidSpawnAmountFactor, 1, 30);
-                // Calculate asteroid delay factor.
-                asteroidSpawnDelayFactor = Phaser.Math.MaxAdd(asteroidSpawnDelayFactor, 1, 40);
-
-                // Spawn one or more asteroids
-                // Increasing the amout every 10 callbacks
-                const amountToSpawn = Phaser.Math.Between(1, 2 + Math.trunc(asteroidSpawnAmountFactor / 10));
+                // Spawn one to 4 asteroids
+                const amountToSpawn = Phaser.Math.Between(1, 4);
                 for (let i = 0; i < amountToSpawn; i++) {
-                    this.spawnNewAsteroid(asteroidSpeedFactor);                    
+                    this.spawnNewAsteroid(20 + asteroidSpeedFactor);                    
                 }
-                
-                // Decrease spawn delay.
-                this.asteroidSpawnTimer.timeScale = 1 + asteroidSpawnDelayFactor * 0.01;
+
+                // Increase base speed every iteration.
+                asteroidSpeedFactor++;
             },
-            delay: 1000,
+            delay: 1500,
             loop: true
         });
 
@@ -124,7 +114,7 @@ export default class GameScene extends Phaser.Scene {
         const spawnPoint = this.getRandomRightMarginSpawnPoint();
 
         const newAsteroid: Asteroid = this.asteroids.get(spawnPoint.x, spawnPoint.y);
-        newAsteroid.create(18 + asteroidSpeedFactor);       
+        newAsteroid.create(asteroidSpeedFactor);       
     }
 
     private spawnRandomUpgrade() {
