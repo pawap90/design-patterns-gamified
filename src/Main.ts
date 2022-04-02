@@ -15,7 +15,8 @@ const config: Phaser.Types.Core.GameConfig = {
         }
     },
     scene: [PreloaderScene, GameScene, GameOverScene],
-    backgroundColor: '#21414E'
+    backgroundColor: '#21414E',
+    parent: 'game-container'
 };
 
 export default new Phaser.Game(config);
