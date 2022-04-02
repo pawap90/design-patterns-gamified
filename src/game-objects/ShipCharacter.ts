@@ -1,18 +1,19 @@
-import BigGun from '../gun-strategy/BigGun';
 import GunStrategy from '../gun-strategy/GunStrategy';
+import SimpleGun from '../gun-strategy/SimpleGun';
 import ControllerKeys from '../utils/ControllerKeys';
 import Bullet from './Bullet';
 
 export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
 
-    private speed = 50;
-    private bullets!: Phaser.Physics.Arcade.Group;
+    private speed = 30;
     private gunStrategy: GunStrategy;
-
+    
+    bullets!: Phaser.Physics.Arcade.Group;
+    
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'spaceship');
-
-        this.gunStrategy = new BigGun();
+        
+        this.gunStrategy = new SimpleGun();
     }
 
     create(): void {
