@@ -7,7 +7,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Image {
     update(time: number, delta: number): void {
         super.update(time, delta);
 
-        if (this.x >= this.scene.physics.world.bounds.width) {
+        if (this.x >= this.scene.physics.world.bounds.right) {
             this.destroy();
         }
     }
