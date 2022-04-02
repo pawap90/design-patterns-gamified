@@ -2,10 +2,10 @@ import Bullet from '../game-objects/Bullet';
 import ShipCharacter from '../game-objects/ShipCharacter';
 import GunStrategy from './GunStrategy';
 
-export default class BigGun implements GunStrategy {
+export default class BubbleGun implements GunStrategy {
 
-    private bulletSpeed = 30;
-    private delay = 1000; 
+    private bulletSpeed = 20;
+    private delay = 500; 
     private lastBulletTime = 0;
 
     shoot(bulletGroup: Phaser.Physics.Arcade.Group, ship: ShipCharacter, scene: Phaser.Scene, time: number, delta: number): void {

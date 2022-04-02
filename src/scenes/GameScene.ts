@@ -2,7 +2,7 @@ import Phaser, { GameObjects } from 'phaser';
 import Asteroid from '../game-objects/Asteroid';
 import GunUpgrade from '../game-objects/GunUpgrade';
 import ShipCharacter from '../game-objects/ShipCharacter';
-import BigGun from '../gun-strategy/BigGun';
+import BubbleGun from '../gun-strategy/BubbleGun';
 import DoubleGun from '../gun-strategy/DoubleGun';
 import SimpleGun from '../gun-strategy/SimpleGun';
 import ControllerKeys from '../utils/ControllerKeys';
@@ -18,7 +18,7 @@ export default class GameScene extends Phaser.Scene {
     private availableUpgrades = [
         { texture: 'simple-upgrade', strategy: new SimpleGun() },
         { texture: 'double-upgrade', strategy: new DoubleGun() },
-        { texture: 'bubble-upgrade', strategy: new BigGun() }
+        { texture: 'bubble-upgrade', strategy: new BubbleGun() }
     ];
 
     constructor() {
