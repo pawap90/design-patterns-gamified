@@ -13,7 +13,6 @@ export default class GameScene extends Phaser.Scene {
     private controllerKeys!: ControllerKeys;
 
     private asteroids!: Phaser.Physics.Arcade.Group;
-    private asteroidSpawnTimer!: Phaser.Time.TimerEvent;
     
     private upgrades!: Phaser.Physics.Arcade.Group;
     private availableUpgrades = [
@@ -46,10 +45,10 @@ export default class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.shipCharacter.bullets, this.asteroids, this.onBulletAsteroidCollide, undefined, this);
 
         // Add ship vs asteroids collider.
-        this.physics.add.collider(this.shipCharacter, this.asteroids, this.onAsteroidCollide, undefined, this);
+        this.physics.add.collider(this.shipCharacter, this.asteroids, this.onShipAsteroidCollide, undefined, this);
 
         let asteroidSpeedFactor = 0;
-        this.asteroidSpawnTimer = this.time.addEvent({
+        this.time.addEvent({
             callback: () => {
                 // Spawn one to 4 asteroids
                 const amountToSpawn = Phaser.Math.Between(1, 4);
@@ -71,7 +70,7 @@ export default class GameScene extends Phaser.Scene {
         });
 
         // Create gun upgrade spawner.
-        this.asteroidSpawnTimer = this.time.addEvent({
+        this.time.addEvent({
             callback: () => {
                 this.spawnRandomUpgrade();
             },
@@ -79,7 +78,8 @@ export default class GameScene extends Phaser.Scene {
             loop: true
         });
 
-        this.physics.add.collider(this.shipCharacter, this.upgrades, this.onUpgradeCollide, undefined, this);
+        // Add ship vs upgrades collider.
+        this.physics.add.collider(this.shipCharacter, this.upgrades, this.onShipUpgradeCollide, undefined, this);
     }
 
     update(time: number, delta: number): void {
@@ -88,17 +88,31 @@ export default class GameScene extends Phaser.Scene {
         this.shipCharacter.update(time, delta, this.controllerKeys);
     }
 
-    private onAsteroidCollide() {
+    /** 
+     * Handle collision between the spaceship and an asteroid 
+     * The current scene is paused and the Game Over scene is started over it.
+     * From the Game Over scene the player can restart the game.
+     */
+    private onShipAsteroidCollide() {
         this.scene.pause();
         this.scene.start(GameOverScene.name);
     }
 
+    /** 
+     * Handle collision between a bullet and an asteroid 
+     * Both game objects are destroyed.
+     */
     private onBulletAsteroidCollide(bulletGameObject: GameObjects.GameObject, asteroidGameObject: GameObjects.GameObject) {
         asteroidGameObject.destroy();
         bulletGameObject.destroy();
     }
     
-    private onUpgradeCollide(shipGameObject: GameObjects.GameObject, upgradeGameObject: GameObjects.GameObject) {
+    /** 
+     * Handle collision between the spaceship and an upgrade 
+     * The spaceship takes the new gun strategy defined in the upgrade
+     * The upgrade is destroyed.
+     */
+    private onShipUpgradeCollide(shipGameObject: GameObjects.GameObject, upgradeGameObject: GameObjects.GameObject) {
         const gunUpgrade = (upgradeGameObject as GunUpgrade);
         if (gunUpgrade.gunStrategy)
             (shipGameObject as ShipCharacter).setGunStrategy(gunUpgrade.gunStrategy);
@@ -106,10 +120,17 @@ export default class GameScene extends Phaser.Scene {
         upgradeGameObject.destroy();
     }
 
+    /** 
+     * Returns a random point on Y (inside the camera bounds) 
+     * along with a point on X outside the camera bounds 
+     */
     private getRandomRightMarginSpawnPoint() {
         return { x: this.cameras.main.width, y: Phaser.Math.Between(20, this.cameras.main.height - 20) };
     }
 
+    /**
+     * Adds a new asteroid game object to the scene.
+     */
     private spawnNewAsteroid(asteroidSpeedFactor: number) {
         const spawnPoint = this.getRandomRightMarginSpawnPoint();
 
@@ -117,6 +138,9 @@ export default class GameScene extends Phaser.Scene {
         newAsteroid.create(asteroidSpeedFactor);       
     }
 
+    /**
+     * Adds a new upgrade game object to the scene
+     */
     private spawnRandomUpgrade() {
         const randomUpgrade = this.availableUpgrades[Phaser.Math.Between(0, 2)];
         
