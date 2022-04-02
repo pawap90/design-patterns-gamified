@@ -21,6 +21,10 @@ export default class ShipCharacter extends Phaser.Physics.Arcade.Image {
         this.setCollideWorldBounds(true);
         this.setDepth(1);
         this.bullets = this.scene.physics.add.group({ classType: Bullet, runChildUpdate: true });
+
+        // Resize body to make it more accurate for collisions.
+        this.body.setSize(this.body.width * 0.8, this.body.height * 0.8);
+        this.body.offset.x -= 4;
     }
 
     update(time: number, delta: number, controllerKeys: ControllerKeys): void {
