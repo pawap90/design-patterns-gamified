@@ -26,7 +26,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create(): void {
-        this.controllerKeys = new ControllerKeys(this, 'wasd');
+        this.controllerKeys = new ControllerKeys(this);
 
         // Add character to the scene.
         this.shipCharacter = new ShipCharacter(this, 0, 0);
