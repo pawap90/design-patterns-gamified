@@ -15,6 +15,8 @@ Let’s begin with a quick definition:
 - All *strategies* can be used and interchanged **at runtime** by one or more **clients**.
 - To make sure strategies are interchangeable, every one of them will have to **implement the same interface**.
 
+![Strategy class diagram](https://user-images.githubusercontent.com/2507959/161648131-aabefb57-926d-46fb-b551-195240e75337.png)
+
 So, in our example:
 
 - **Each gun behavior** we defined (simple, double, bubble) is a **strategy**. So  we’ll encapsulate the behavior in a separate class.
@@ -22,6 +24,8 @@ So, in our example:
 - Our `Ship` **class** will define a `gunStrategy` **field** where we can set the currently selected strategy.
 
 ![The ship shooting using different upgrades/strategies](https://user-images.githubusercontent.com/2507959/161646869-1b8ebd13-9225-4dab-95c3-c33d0be67620.png)
+
+
 
 # The project
 
