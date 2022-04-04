@@ -2,6 +2,8 @@
 # Space shooter strategy
 Space shooter strategy is a tiny game designed to demonstrate the strategy pattern.
 
+Move and shoot to prevent the asteroids from destroying your ship. 
+Get upgrades for your ship's gun to help you destroy any asteroids that may hit you.
 
 # The strategy pattern
 Let’s begin with a quick definition:
