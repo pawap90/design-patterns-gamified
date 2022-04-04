@@ -1,9 +1,11 @@
 
 # Space shooter strategy
-Space shooter strategy is a tiny game designed to demonstrate the strategy pattern.
+Space shooter strategy is a tiny game designed to demonstrate the **strategy pattern**.
 
 Move and shoot to prevent the asteroids from destroying your ship. 
 Get upgrades for your ship's gun to help you destroy any asteroids that may hit you.
+
+![The ship shooting asteroids](https://user-images.githubusercontent.com/2507959/161647393-177c8835-cecf-408c-9e76-375c9f053451.png)
 
 # The strategy pattern
 Let’s begin with a quick definition:
@@ -18,6 +20,8 @@ So, in our example:
 - **Each gun behavior** we defined (simple, double, bubble) is a **strategy**. So  we’ll encapsulate the behavior in a separate class.
 - We’ll also have a `GunStrategy` **interface** that each gun will implement.
 - Our `Ship` **class** will define a `gunStrategy` **field** where we can set the currently selected strategy.
+
+![The ship shooting using different upgrades/strategies](https://user-images.githubusercontent.com/2507959/161646869-1b8ebd13-9225-4dab-95c3-c33d0be67620.png)
 
 # The project
 
