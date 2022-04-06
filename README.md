@@ -1,11 +1,16 @@
 
-# Space shooter strategy
 Space shooter strategy is a tiny game designed to demonstrate the **strategy pattern**.
 
 Move and shoot to prevent the asteroids from destroying your ship. 
 Get upgrades for your ship's gun to help you destroy any asteroids that may hit you.
 
 ![The ship shooting asteroids](https://user-images.githubusercontent.com/2507959/161647393-177c8835-cecf-408c-9e76-375c9f053451.png)
+
+**Table of contents**
+- [The strategy pattern](#the-strategy-pattern)
+- [The project](#the-project)
+- [Dependencies](#dependencies)
+- [Quick start](#quick-start)
 
 # The strategy pattern
 Let’s begin with a quick definition:
