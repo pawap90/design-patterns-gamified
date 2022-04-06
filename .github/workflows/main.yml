@@ -11,16 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Build strategy-pattern-space-shooter
+        uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
         with:
-          node-version: '14'
-          cache: 'npm'
-  
-      - name: Build project 🔧
-        run: | 
-          npm install
-          npm run build
+          project_folder: strategy-pattern-space-shooter
         
       # Deploy latest contribution to GitHub pages
       - name: Deploy 🚀
