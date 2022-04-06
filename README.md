@@ -80,4 +80,9 @@ npm run build
 
 > You can remove everything in the `public/assets` folder. But I recommend you first run the project once and make sure everything is installed and running properly.
 
+<br>
 
+[![](https://i.imgur.com/40L9uPk.png)](https://paulasantamaria.com)
+
+Let's connect!: [Instagram](https://www.instagram.com/pau.codes/) | [Twitch](https://www.twitch.tv/paulasantamaria) | [Twitter](https://twitter.com/pauxdsantamaria)
+ 
