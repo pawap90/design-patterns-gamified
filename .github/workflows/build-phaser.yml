@@ -15,7 +15,7 @@ jobs:
     steps:
     
       - name: Navigate to project
-        run: cd ${{ inputs.project_folder }}
+        run: cd ./${{ inputs.project_folder }}
     
       - uses: actions/checkout@v2
       
