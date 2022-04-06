@@ -1,93 +1,13 @@
+# Welcome to **Design patterns gamified**! 
 
-Space shooter strategy is a tiny game designed to demonstrate the **strategy pattern**.
+I created this repo to teach design patterns through games. Each folder contains a tiny game that demonstrates how to apply a single design pattern. 
 
-Move and shoot to prevent the asteroids from destroying your ship. 
-Get upgrades for your ship's gun to help you destroy any asteroids that may hit you.
+Each folder also includes their own `README` with a short explanation of the design pattern and how it was applied in the game.
 
-![The ship shooting asteroids](https://user-images.githubusercontent.com/2507959/161647393-177c8835-cecf-408c-9e76-375c9f053451.png)
-
-**Table of contents**
-- [The strategy pattern](#the-strategy-pattern)
-- [The project](#the-project)
-- [Dependencies](#dependencies)
-- [Quick start](#quick-start)
-
-# The strategy pattern
-Let’s begin with a quick definition:
-
-- The strategy pattern defines a set of **encapsulated and interchangeable algorithms**. 
-- Each *algorithm* represents a **strategy**.
-- All *strategies* can be used and interchanged **at runtime** by one or more **clients**.
-- To make sure strategies are interchangeable, every one of them will have to **implement the same interface**.
-
-![Strategy class diagram](https://user-images.githubusercontent.com/2507959/161648131-aabefb57-926d-46fb-b551-195240e75337.png)
-
-So, in our example:
-
-- **Each gun behavior** we defined (simple, double, bubble) is a **strategy**. So  we’ll encapsulate the behavior in a separate class.
-- We’ll also have a `GunStrategy` **interface** that each gun will implement.
-- Our `Ship` **class** will define a `gunStrategy` **field** where we can set the currently selected strategy.
-
-![The ship shooting using different upgrades/strategies](https://user-images.githubusercontent.com/2507959/161646869-1b8ebd13-9225-4dab-95c3-c33d0be67620.png)
-
-
-
-# The project
-
-```
-└───src/
-    ├───game-objects/             Our game objects
-    │   ├───Asteroid.ts             Handles the asteroids' texture and movement
-    │   ├───Bullet.ts               Represents any type of bullet
-    │   ├───GunUpgrade.ts           Represents upgrades for the gun
-    │   └───ShipCharacter.ts        Our main character logic (movement, shooting, etc.)
-    │
-    ├───gun-strategy/             The strategies algorithms are implemented here
-    │   ├───BubbleGun.ts            Strategy for the bubble gun
-    │   ├───DoubleGun.ts            Strategy for the double gun
-    │   ├───GunStrategy.ts          Strategy  interface
-    │   └───SimpleGun.ts            Strategy for the simple gun (the default)
-    │
-    ├───scenes/                   The game's scenes
-    │   ├───GameOverScene.ts        Scene that is displayed when the player gets hit
-    │   ├───GameScene.ts            The game's main logic
-    │   └───PreloaderScene.ts       Loader for the assets
-    │
-    └───Main.ts
-```
-
-
-# Dependencies
-- [Node.js](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/)
-
-# Quick start
-
-1. Install dependencies: Run the following command from the project's root folder:
-
-```sh
-npm install
-```
-
-2. Start the local development server: 
-
-```sh
-npm start
-```
-
-3. Go to your browser and navigate to http://localhost:8000. 
-
-4. If you wish to publish your project somewhere, create the production build using the following command:
-
-```sh
-npm run build
-```
-
-> You can remove everything in the `public/assets` folder. But I recommend you first run the project once and make sure everything is installed and running properly.
+- [Strategy pattern - A space shooter](./strategy-pattern-space-shooter/): Destroy asteroids before they destroy you by picking up upgrades for your spaceship's gun. Each upgrade represents a new strategy that your ship can set at runtime!
 
 <br>
 
 [![](https://i.imgur.com/40L9uPk.png)](https://paulasantamaria.com)
 
 Let's connect!: [Instagram](https://www.instagram.com/pau.codes/) | [Twitch](https://www.twitch.tv/paulasantamaria) | [Twitter](https://twitter.com/pauxdsantamaria)
- 
