@@ -6,15 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  build:
+  build-strategy-pattern-space-shooter:
+    uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
+    with:
+      project_folder: strategy-pattern-space-shooter
+ 
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      
-      - name: Build strategy-pattern-space-shooter
-        uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
-        with:
-          project_folder: strategy-pattern-space-shooter
         
       # Deploy latest contribution to GitHub pages
       - name: Deploy 🚀
