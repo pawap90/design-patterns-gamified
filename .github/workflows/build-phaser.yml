@@ -8,22 +8,24 @@ on:
       project_folder:
         required: true
         type: string
-defaults:
-    run:
-      working-directory: ${{ inputs.project_folder }}
+
 jobs:
   build_job:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.project_folder }}
     steps:
     
       - uses: actions/checkout@v2
       
       - run: ls
            
-      - uses: actions/setup-node@v2   
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.1.0
         with:
-          node-version: 16
-          cache: npm
+          node-version: '14'
+          cache: 'npm'
 
       - name: Build project 🔧
         run: | 
