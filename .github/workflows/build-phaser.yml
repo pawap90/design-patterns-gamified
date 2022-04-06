@@ -1,0 +1,27 @@
+# Reusable workflow to build a Phaser project within a folder
+
+name: Build Phaser project
+
+on:
+  workflow_call:
+    inputs:
+      project_folder:
+        required: true
+        type: string
+      
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Build project 🔧
+        run: | 
+          cd ${{ inputs.project_folder }}
+          npm install
+          npm run build
