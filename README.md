@@ -8,7 +8,7 @@ Each folder also includes their own `README.md` with a short explanation of the 
 
 - [Strategy pattern - A space shooter 🚀](./strategy-pattern-space-shooter/): Destroy asteroids before they destroy you by picking up upgrades for your spaceship's gun. Each upgrade represents a new strategy that your ship can set at runtime!
 
-> I'm already working on the next game!
+> I'm working on the next game!
 
 <br>
 
