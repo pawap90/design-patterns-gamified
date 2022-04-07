@@ -1,0 +1,13 @@
+# Workflow to build all projects
+
+name: Build all
+
+on:
+  workflow_call:
+  
+jobs:
+  # strategy-pattern-space-shooter
+  build-strategy-pattern-space-shooter:
+    uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
+    with:
+      project_folder: strategy-pattern-space-shooter
