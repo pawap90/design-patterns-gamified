@@ -7,16 +7,31 @@ on:
 
 jobs:
   build:
-    uses: pawap90/design-patterns-gamified/.github/workflows/build-all.yml@main
+    uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
+    with:
+      project_folder: strategy-pattern-space-shooter
  
-  deploy:
+  deploy_index:
     runs-on: ubuntu-latest
     needs: build
     steps:
-        
-      # Deploy latest contribution to GitHub pages
+    
+      - uses: actions/checkout@v2
+      
+      - run: mkdir build
+      
+      - uses: ZacJW/markdown-html-action@1.1.0
+        with:
+          input_files: '[["README.md"]]'
+          output_files: '["build/index.html"]'
+          # builtin_stylesheet: 'style.css'
+          packages: 'pymdown-extensions'
+          extensions: '["pymdownx.extra"]'
+          
+      # Deploy index
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: _build
+          folder: build
+          
