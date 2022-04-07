@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: pawap90/design-patterns-gamified/.github/workflows/build-phaser.yml@main
+    uses: pawap90/design-patterns-gamified/.github/workflows/cicd-phaser.yml@main
     with:
       project_folder: strategy-pattern-space-shooter
  
