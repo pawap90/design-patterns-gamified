@@ -23,7 +23,7 @@ jobs:
         with:
           input_files: '[["README.md"]]'
           output_files: '["build/index.html"]'
-          # builtin_stylesheet: 'style.css'
+          builtin_stylesheet: 'assets/style.css'
           packages: 'pymdown-extensions'
           extensions: '["pymdownx.extra"]'
           
