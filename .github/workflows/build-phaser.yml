@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: '14'
           cache: 'npm'
+          cache-dependency-path: ${{ inputs.project_folder }}/package-lock.json
 
       - name: Build project 🔧
         run: | 
