@@ -35,5 +35,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: _build
+          folder: ${{ inputs.project_folder }}/_build
           target-folder: ${{ inputs.project_folder }}
