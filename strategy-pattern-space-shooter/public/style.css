@@ -1,5 +1,11 @@
 :root {
     --color-black: #212121;
+    --color-white: #F5F5F5;
+    --color-pink: #B468D8;
+    --color-gray: #2F364A;
+    --color-gray-dark: #282E3F;
+    --color-gray-lighter: #6A748C;
+    --color-red: #d86868;
 }
 
 body {
@@ -8,7 +14,14 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--color-black);
+    color: var(--color-white);
+    background-color: var(--color-gray);
+    line-height: 2;
+}
+
+a {
+    color: var(--color-pink);
+    text-decoration: none;
 }
 
 .github-url {
@@ -28,6 +41,23 @@ body {
 
 .game-info > .controls {
     min-width: 25%;
-    border-left: var(--color-black) thin solid;
+    border-left: var(--color-pink) thin solid;
     padding-left: 16px;
+}
+
+code, tt {
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;
+    border: 1px solid var(--color-gray-dark);
+    background-color: var(--color-gray-dark);
+    color: var(--color-pink);
+    border-radius: 3px;
+}
+
+canvas {
+    border-color: var(--color-gray-lighter);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
 }
