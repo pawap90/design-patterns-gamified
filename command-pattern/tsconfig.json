@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
