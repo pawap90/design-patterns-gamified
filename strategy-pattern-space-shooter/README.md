@@ -63,19 +63,29 @@ So, in our example:
 
 # Quick start
 
-1. Install dependencies: Run the following command from the project's root folder:
+1. Navigate to this project's root folder:
+
+```sh
+cd strategy-pattern-space-shooter
+```
+
+2. Install dependencies: Run the following command:
 
 ```sh
 npm install
 ```
 
-2. Start the local development server: 
+3. Start the local development server: 
 
 ```sh
 npm start
 ```
 
-3. Go to your browser and navigate to http://localhost:8000. 
+4. Go to your browser and navigate to http://localhost:8000. 
+
+That's it! You should see the game running in your browser.
+
+---
 
 <br>
 
