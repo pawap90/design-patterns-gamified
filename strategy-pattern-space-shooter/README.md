@@ -77,14 +77,6 @@ npm start
 
 3. Go to your browser and navigate to http://localhost:8000. 
 
-4. If you wish to publish your project somewhere, create the production build using the following command:
-
-```sh
-npm run build
-```
-
-> You can remove everything in the `public/assets` folder. But I recommend you first run the project once and make sure everything is installed and running properly.
-
 <br>
 
 [![](https://i.imgur.com/40L9uPk.png)](https://paulasantamaria.com)
