@@ -7,7 +7,7 @@ export default class Preloader extends Phaser.Scene {
     }
 
     preload(): void {
-        
+        this.load.image('robot', 'assets/robot.png');
     }
 
     create(): void {
