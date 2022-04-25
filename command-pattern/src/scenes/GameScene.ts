@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import { MoveLeftCommand } from '../commands/MoveLeftCommand';
+import { MoveRightCommand } from '../commands/MoveRightCommand';
+import { RobotCommandInvoker } from '../commands/RobotCommandInvoker';
 import Robot from '../game-objects/Robot';
 import ControllerKeys from '../utils/ControllerKeys';
 import GameOverScene from './GameOverScene';
@@ -19,7 +22,14 @@ export default class GameScene extends Phaser.Scene {
         this.physics.add.existing(robot);
         robot.create();
 
-        robot.moveTo(300, 300)
+        const invoker = new RobotCommandInvoker(this, robot);
+        invoker.add(new MoveRightCommand());
+        invoker.add(new MoveLeftCommand());
+        invoker.add(new MoveRightCommand());
+        invoker.add(new MoveLeftCommand());
+        invoker.add(new MoveRightCommand());
+        invoker.add(new MoveLeftCommand());
+        invoker.executeQueue();
     }
 
     update(time: number, delta: number): void {

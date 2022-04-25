@@ -36,7 +36,7 @@ export default class Robot extends Phaser.Physics.Arcade.Image {
         this.setVelocity(speed.x, speed.y);
     }
 
-    moveTo(x: number, y: number) {
+    moveTo(x: number, y: number, onCompleteCallback: () => void) {
         const duration = Phaser.Math.Distance.Between(this.x, this.y, x, y) / this.speed;
 
         this.scene.tweens.add({
@@ -44,7 +44,10 @@ export default class Robot extends Phaser.Physics.Arcade.Image {
             x: x,
             y: y,
             ease: 'Linear',
-            duration: duration
+            duration: duration,
+            onComplete : () => {
+                onCompleteCallback();
+            }
         });
     }
 }
